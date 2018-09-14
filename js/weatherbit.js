@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    var app = $("#calendar-input").daterangepicker();
     $("#search-btn").on("click", function () {
 
         // Necessary variables for weather
@@ -32,7 +31,7 @@ $(document).ready(function() {
         }
 
         // Check if country is US
-        if (country === "US") {
+        if (country === "United States") {
             var is_US_state = true;
             var state = $("#stateId").val();
         } else {
@@ -64,16 +63,16 @@ $(document).ready(function() {
                     // We store all of the retrieved data inside of an object called "response"
                     // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
                     .then(function(response) {
-                        $("#city-div").append("<p>City: " + reponse.city-name + "</p>");
-                        $("#temp-div").append("<p>Temperature (F): " + response.data.temp + "</p>");
-                        $("#max-temp-div").append("<p> Max Temperature (F): " + response.data.max_temp + "</p>");
-                        $("#min-temp-div").append("<p> Min Temperature (F): " + response.data.min_temp + "</p>");
-                        $("#wind-speed-div").append("<p> Windspeed (mph): " + response.data.wind_spd + "</p>"); 
-                        $("#wind-dir-div").append("<p> Wind direction: " + response.data.wind_cdir_full + "</p>"); 
-                        $("#clouds-div").append("<p> Clouds: " + response.data.clouds + "</p>");
-                        $("#visibility-div").append("<p> Visibility %: " + response.data.vis + "</p>");
-                        $("#snow-div").append("<p> Snow: " + response.data.snow + "</p>");
-                        $("#snow-depth-div").append("<p> Snow Depth: " + response.data.snow_depth + "</p>");
+                        console.log($("#city-div").append("<p>City: " + reponse.city-name + "</p>"));
+                        console.log($("#temp-div").append("<p>Temperature (F): " + response.data.temp + "</p>"));
+                        console.log($("#max-temp-div").append("<p> Max Temperature (F): " + response.data.max_temp + "</p>"));
+                        console.log($("#min-temp-div").append("<p> Min Temperature (F): " + response.data.min_temp + "</p>"));
+                        console.log($("#wind-speed-div").append("<p> Windspeed (mph): " + response.data.wind_spd + "</p>")); 
+                        console.log($("#wind-dir-div").append("<p> Wind direction: " + response.data.wind_cdir_full + "</p>")); 
+                        console.log($("#clouds-div").append("<p> Clouds: " + response.data.clouds + "</p>"));
+                        console.log($("#visibility-div").append("<p> Visibility %: " + response.data.vis + "</p>"));
+                        console.log($("#snow-div").append("<p> Snow: " + response.data.snow + "</p>"));
+                        console.log($("#snow-depth-div").append("<p> Snow Depth: " + response.data.snow_depth + "</p>"));
                         
                         console.log(JSON.stringify(response));
                     });
