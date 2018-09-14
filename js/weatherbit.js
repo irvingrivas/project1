@@ -11,8 +11,8 @@ $(document).ready(function() {
 
         var city = $("#cityId").val();
         var country = $("#countryId").val();
-        var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim(),"MM/DD/YYYY").format("MM/DD/YYYY");
-        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim(),"MM/DD/YYYY").format("MM/DD/YYYY");
+        var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim());
+        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim());
 
         // Only get up to 16 days forecast, otherwise goes back a year
         var prediction = "forecast";
@@ -42,7 +42,7 @@ $(document).ready(function() {
         var APIKey = "5887b8d504574dffbe86fb6dfad4bd60";
 
         // DO NOT Run this repeatedly, API only allows a finite number of calls for weather data !!
-        for (let i = 0; i < date_arr.length - 1; ++i) {
+        for (var i = 0; i < date_arr.length - 1; ++i) {
 
             // Here we are building the URL we need to query the database   
             if (is_US_state) {
@@ -63,13 +63,13 @@ $(document).ready(function() {
                     // We store all of the retrieved data inside of an object called "response"
                     // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
                     .then(function(response) {
-                        console.log(date_arr[i].format("MM/DD/YYYY"));
-                        console.log($("#temp-div").append("<p>Temperature (F): " + response.data.temp + "</p>"));
-                        console.log($("#max-temp-div").append("<p> Max Temperature (F): " + response.data.max_temp + "</p>"));
-                        console.log($("#min-temp-div").append("<p> Min Temperature (F): " + response.data.min_temp + "</p>"));
+                        console.log("Date: " + date_arr[i].format("MM/DD/YYYY"));
+                        console.log("Temperature (F): " + response.data.temp);
+                        console.log("Max Temperature (F): " + response.data.max_temp);
+                        console.log("Min Temperature (F): " + response.data.min_temp);
                         
                     });
-                }
+        }
     });
 });
     
