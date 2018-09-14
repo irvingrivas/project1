@@ -21,15 +21,16 @@ $(document).ready(function() {
         var curr_date = moment();
         if ((curr_date.diff(end_date,"days") >= 16) && end_date.isAfter(curr_date)) { 
             prediction = "history";
-            start_date = start_date.subtract(1,"years");
-            end_date = end_date.subtract(1,"years");
+            start_date.subtract(1,"years");
+            end_date.subtract(1,"years");
         }
 
         // Populate date array which holds range of dates
         var date_arr = [];
         var date_range = end_date.diff(start_date,"days");
         for (let i = 0; i < date_range; ++i) {
-            date_arr[i] = start_date.add(1,"days");
+            var tmp = start_date.clone();
+            date_arr[i] = tmp.add(1,"days");
         }
 
         // Check if country is US
@@ -50,7 +51,7 @@ $(document).ready(function() {
             // Here we are building the URL we need to query the database   
             if (is_US_state) {
                 var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
-                "city=" + city + "," + state + "," + country + "&start_date=" +  date_arr[i] +
+                "city=" + city + "," + state + "&start_date=" +  date_arr[i] +
                 "&end_date=" + date_arr[i+1] + "&key=" + APIKey;
             } else {
                 var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
