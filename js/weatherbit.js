@@ -1,5 +1,7 @@
 $(document).ready(function() {
-
+    $(document).ready(function() {
+        $("#calendar-input").daterangepicker();
+      });
     $("#search-btn").on("click", function () {
 /*
         // Necessary variables for weather
