@@ -12,7 +12,7 @@ $(document).ready(function() {
         var city = $("#cityId").val();
         var country = $("#countryId").val();
         var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim(),"MM/DD/YYYY");
-        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim()z);
+        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim(),"MM/DD/YYYY");
 
         // Only get up to 16 days forecast, otherwise goes back a year
         var prediction = "forecast";
