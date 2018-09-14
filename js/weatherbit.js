@@ -4,16 +4,16 @@ $(document).ready(function() {
 
         // Necessary variables for weather
         console.log("City: " + $("#cityId").val());
-        console.log("Country: " + $("#countryID").val());
-        console.log("Start Date:" + $("#calendar-input").daterangepicker().startDate);
-        console.log("End Date:" + $("#calendar-input").daterangepicker().endDate);
-        console.log("Moment Start Date:" + $("#calendar-input").daterangepicker().startDate);
-        console.log("Moment End Date:" + $("#calendar-input").daterangepicker().endDate);
+        console.log("Country: " + $("#countryId").val());
+        console.log("Start Date: " + $("#calendar-input").daterangepicker().val().split("-")[0].trim());
+        console.log("End Date: " + $("#calendar-input").daterangepicker().val().split("-")[1].trim());
+        console.log("Moment Start Date: " + moment($("#calendar-input").daterangepicker().val().split("-")[0].trim());
+        console.log("Moment End Date: " + moment($("#calendar-input").daterangepicker().val().split("-")[1].trim()));
 
         var city = $("#cityId").val();
-        var country = $("#countryID").val();
-        var start_date = moment($("#calendar-input").daterangepicker().startDate);
-        var end_date = moment($("#calendar-input").daterangepicker().endDate);
+        var country = $("#countryId").val();
+        var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim());
+        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim());
 
         // Only get up to 16 days forecast, otherwise goes back a year
         var prediction = "forecast";
