@@ -62,7 +62,7 @@ $(document).ready(function() {
                 // We store all of the retrieved data inside of an object called "response"
                 // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
                 .then(function(response) {
-                    console.log(i);
+                    console.log("Index: " + i);
                     console.log("Date: " + response.data[i].valid_date);
                     console.log("Temperature (F): " + response.data[i].temp);
                     console.log("Max Temperature (F): " + response.data[i].max_temp);
