@@ -1,6 +1,5 @@
 // Calendar widget
-/*
-$(document).ready(function() {
-  $("#calendar-input").daterangepicker();
-});
-*/
+
+    $(document).ready(function() {
+        $("#calendar-input").daterangepicker();
+      });

@@ -1,6 +1,7 @@
 $(document).ready(function() {
-    $("#search-btn").on("click", function () {
 
+    $("#search-btn").on("click", function () {
+/*
         // Necessary variables for weather
         console.log("City: " + $("#cityId").val());
         console.log("Country: " + $("#countryID").val());
@@ -13,7 +14,7 @@ $(document).ready(function() {
         var country = $("#countryID").val();
         var start_date = moment($("#calendar-input").daterangepicker().startDate);
         var end_date = moment($("#calendar-input").daterangepicker().endDate);
-
+*/
         // Only get up to 16 days forecast, otherwise goes back a year
         var prediction = "forecast";
         var curr_date = moment();
