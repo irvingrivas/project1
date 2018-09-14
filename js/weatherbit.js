@@ -11,8 +11,8 @@ $(document).ready(function() {
 
         var city = $("#cityId").val();
         var country = $("#countryId").val();
-        var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim(),"MM/DD/YYYY");
-        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim(),"MM/DD/YYYY");
+        var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim(),"MM/DD/YYYY").format("MM/DD/YYYY");
+        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim(),"MM/DD/YYYY").format("MM/DD/YYYY");
 
         // Only get up to 16 days forecast, otherwise goes back a year
         var prediction = "forecast";
@@ -63,7 +63,7 @@ $(document).ready(function() {
                     // We store all of the retrieved data inside of an object called "response"
                     // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
                     .then(function(response) {
-                        console.log(date_arr[i]);
+                        console.log(date_arr[i].format("MM/DD/YYYY"));
                         console.log($("#temp-div").append("<p>Temperature (F): " + response.data.temp + "</p>"));
                         console.log($("#max-temp-div").append("<p> Max Temperature (F): " + response.data.max_temp + "</p>"));
                         console.log($("#min-temp-div").append("<p> Min Temperature (F): " + response.data.min_temp + "</p>"));
