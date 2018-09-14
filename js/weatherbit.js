@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    // This is needed for API
+
     $("#search-btn").on("click", function () {
 
         // Necessary variables for weather
@@ -33,7 +35,8 @@ $(document).ready(function() {
         // Check if country is US
         if (country === "United States") {
             var is_US_state = true;
-            var state = $("#stateId").val();
+            var state_fullname = $("#stateId").val();
+            state = abbrState(state_fullname,"abbr")
         } else {
             var is_US_state = false;
         }
@@ -46,14 +49,15 @@ $(document).ready(function() {
 
             // Here we are building the URL we need to query the database   
             if (is_US_state) {
-                var queryURL = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
+                var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
                 "city=" + city + "," + state + "," + country + "&start_date=" +  date_arr[i] +
                 "&end_date=" + date_arr[i+1] + "&key=" + APIKey;
             } else {
-                var queryURL = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
+                var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
                 "city=" + city + "," + country + "&start_date=" +  date_arr[i] +
                 "&end_date=" + date_arr[i+1] + "&key=" + APIKey;  
             }
+            queryURL = queryURL_withspaces.split(' ').join('+');
 
                 // Here we run our AJAX call to the OpenWeatherMap API
                 $.ajax({
