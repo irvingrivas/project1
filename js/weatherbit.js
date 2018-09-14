@@ -26,12 +26,7 @@ $(document).ready(function() {
         }
 
         // Populate date array which holds range of dates
-        var date_arr = [];
         var date_range = end_date.diff(start_date,"days");
-        for (let i = 0; i < date_range; ++i) {
-            var tmp = start_date.clone();
-            date_arr[i] = tmp.add(1,"days");
-        }
 
         // Check if country is US
         if (country === "United States") {
@@ -47,17 +42,24 @@ $(document).ready(function() {
 
         // DO NOT Run this repeatedly, API only allows a finite number of calls for weather data !!
         // Here we are building the URL we need to query the database   
-        if (is_US_state) {
+        if (is_US_state && prediction == "history") {
             var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
-            "city=" + city + "," + state + "&start_date=" +  date_arr[i] +
-            "&end_date=" + date_arr[i+1] + "&key=" + APIKey;
-        } else {
+            "city=" + city + "," + state + "&start_date=" + start_date.format("YYYY-MM-DD") +
+            "&end_date=" + end_date.format("YYYY-MM-DD") + "&key=" + APIKey;
+        } else if (!is_US_state && prediction == "history") {
             var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
-            "city=" + city + "," + country + "&start_date=" +  date_arr[i] +
-            "&end_date=" + date_arr[i+1] + "&key=" + APIKey;  
+            "city=" + city + "," + country + "&start_date=" + start_date.format("YYYY-MM-DD") +
+            "&end_date=" + end_date.format("YYYY-MM-DD") + "&key=" + APIKey;  
+        } else if (is_US_state && prediction == "forecast") {
+            var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
+            "city=" + city + "," + state + "&key=" + APIKey;
+        } else if (!is_US_state && prediction == "forecast") {
+            var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
+            "city=" + city + "," + country + "&key=" + APIKey;  
         }
+
         queryURL = queryURL_withspaces.split(' ').join('+');
-        for (var i = 0; i < data_range; ++i) {
+        for (var i = 0; i < date_range; ++i) {
             // Here we run our AJAX call to the OpenWeatherMap API
             $.ajax({
                 url: queryURL,
