@@ -20,7 +20,7 @@ $(document).ready(function() {
 
         // Populate date array which holds range of dates
         var date_range = end_date.diff(start_date,"days");
-
+        var date_offset = start_date.diff(curr_date,"days");
         // Check if country is US
         if (country === "United States") {
             var is_US_state = true;
@@ -52,7 +52,7 @@ $(document).ready(function() {
         }
 
         queryURL = queryURL_withspaces.split(' ').join('+');
-        for (var i = 0; i < date_range; ++i) {
+        for (var i = date_offset; i < date_range + date_offset; ++i) {
             // Here we run our AJAX call to the OpenWeatherMap API
             $.ajax({
                 url: queryURL,
