@@ -12,7 +12,7 @@ $(document).ready(function() {
         var city = $("#cityId").val();
         var country = $("#countryId").val();
         var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim(),"MM/DD/YYYY");
-        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim());
+        var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim()z);
 
         // Only get up to 16 days forecast, otherwise goes back a year
         var prediction = "forecast";
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
         // Populate date array which holds range of dates
         var date_arr = [];
-        var date_range = start_date.diff(end_date,"days");
+        var date_range = end_date.diff(start_date,"days");
         for (let i = 0; i < date_range; ++i) {
             date_arr[i] = start_date.add(1,"days");
         }
@@ -63,18 +63,11 @@ $(document).ready(function() {
                     // We store all of the retrieved data inside of an object called "response"
                     // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
                     .then(function(response) {
-                        console.log($("#city-div").append("<p>City: " + reponse.city-name + "</p>"));
+                        console.log(date_arr[i]);
                         console.log($("#temp-div").append("<p>Temperature (F): " + response.data.temp + "</p>"));
                         console.log($("#max-temp-div").append("<p> Max Temperature (F): " + response.data.max_temp + "</p>"));
                         console.log($("#min-temp-div").append("<p> Min Temperature (F): " + response.data.min_temp + "</p>"));
-                        console.log($("#wind-speed-div").append("<p> Windspeed (mph): " + response.data.wind_spd + "</p>")); 
-                        console.log($("#wind-dir-div").append("<p> Wind direction: " + response.data.wind_cdir_full + "</p>")); 
-                        console.log($("#clouds-div").append("<p> Clouds: " + response.data.clouds + "</p>"));
-                        console.log($("#visibility-div").append("<p> Visibility %: " + response.data.vis + "</p>"));
-                        console.log($("#snow-div").append("<p> Snow: " + response.data.snow + "</p>"));
-                        console.log($("#snow-depth-div").append("<p> Snow Depth: " + response.data.snow_depth + "</p>"));
                         
-                        console.log(JSON.stringify(response));
                     });
                 }
     });
