@@ -4,13 +4,6 @@ $(document).ready(function() {
     $("#search-btn").on("click", function () {
 
         // Necessary variables for weather
-        console.log("City: " + $("#cityId").val());
-        console.log("Country: " + $("#countryId").val());
-        console.log("Start Date: " + $("#calendar-input").daterangepicker().val().split("-")[0].trim());
-        console.log("End Date: " + $("#calendar-input").daterangepicker().val().split("-")[1].trim());
-        console.log("Moment Start Date: " + moment($("#calendar-input").daterangepicker().val().split("-")[0].trim(),"MM/DD/YYYY"));
-        console.log("Moment End Date: " + moment($("#calendar-input").daterangepicker().val().split("-")[1].trim(),"MM/DD/YYYY"));
-
         var city = $("#cityId").val().trim();
         var country = $("#countryId").val().trim();
         var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim());
@@ -69,7 +62,7 @@ $(document).ready(function() {
                 // We store all of the retrieved data inside of an object called "response"
                 // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
                 .then(function(response) {
-                    console.log(response.data[i]);
+                    console.log(response);
                     console.log("Date: " + response.data[i].valid_date);
                     console.log("Temperature (F): " + response.data[i].temp);
                     console.log("Max Temperature (F): " + response.data[i].max_temp);
