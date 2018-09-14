@@ -8,7 +8,7 @@ $(document).ready(function() {
         console.log("Start Date: " + app.val().split("-")[0].trim());
         console.log("End Date: " + app.val().split("-")[1].trim());
         console.log("Moment Start Date: " + moment(app.val().split("-")[0].trim(),"MM/DD/YYYY"));
-        console.log("Moment End Date: " + moment(app.val().split("-")[1].trim()),"MM/DD/YYYY"));
+        console.log("Moment End Date: " + moment(app.val().split("-")[1].trim(),"MM/DD/YYYY"));
 
         var city = $("#cityId").val();
         var country = $("#countryId").val();
