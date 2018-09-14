@@ -19,7 +19,7 @@ $(document).ready(function() {
         // Only get up to 16 days forecast, otherwise goes back a year
         var prediction = "forecast";
         var curr_date = moment();
-        if ((curr_date.diff(end_date,"days") >= 16) && end_date.isAfter(curr_date)) { 
+        if ((end_date.diff(curr_date,"days") >= 16) && end_date.isAfter(curr_date)) { 
             prediction = "history";
             start_date.subtract(1,"years");
             end_date.subtract(1,"years");
