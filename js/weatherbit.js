@@ -46,35 +46,34 @@ $(document).ready(function() {
         var APIKey = "5887b8d504574dffbe86fb6dfad4bd60";
 
         // DO NOT Run this repeatedly, API only allows a finite number of calls for weather data !!
-        for (var i = 0; i < date_arr.length - 1; ++i) {
+        // Here we are building the URL we need to query the database   
+        if (is_US_state) {
+            var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
+            "city=" + city + "," + state + "&start_date=" +  date_arr[i] +
+            "&end_date=" + date_arr[i+1] + "&key=" + APIKey;
+        } else {
+            var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
+            "city=" + city + "," + country + "&start_date=" +  date_arr[i] +
+            "&end_date=" + date_arr[i+1] + "&key=" + APIKey;  
+        }
+        queryURL = queryURL_withspaces.split(' ').join('+');
+        for (var i = 0; i < data_range; ++i) {
+            // Here we run our AJAX call to the OpenWeatherMap API
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
 
-            // Here we are building the URL we need to query the database   
-            if (is_US_state) {
-                var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
-                "city=" + city + "," + state + "&start_date=" +  date_arr[i] +
-                "&end_date=" + date_arr[i+1] + "&key=" + APIKey;
-            } else {
-                var queryURL_withspaces = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
-                "city=" + city + "," + country + "&start_date=" +  date_arr[i] +
-                "&end_date=" + date_arr[i+1] + "&key=" + APIKey;  
-            }
-            queryURL = queryURL_withspaces.split(' ').join('+');
-
-                // Here we run our AJAX call to the OpenWeatherMap API
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                })
-                    // We store all of the retrieved data inside of an object called "response"
-                    // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
-                    .then(function(response) {
-                        console.log(response);
-                        console.log("Date: " + response.data.valid_date);
-                        console.log("Temperature (F): " + response.data.temp);
-                        console.log("Max Temperature (F): " + response.data.max_temp);
-                        console.log("Min Temperature (F): " + response.data.min_temp);
-                        
-                    });
+                // We store all of the retrieved data inside of an object called "response"
+                // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
+                .then(function(response) {
+                    console.log(response.data[i]);
+                    console.log("Date: " + response.data[i].valid_date);
+                    console.log("Temperature (F): " + response.data[i].temp);
+                    console.log("Max Temperature (F): " + response.data[i].max_temp);
+                    console.log("Min Temperature (F): " + response.data[i].min_temp);
+                    
+                });
         }
     });
 });
