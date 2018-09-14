@@ -52,7 +52,7 @@ $(document).ready(function() {
         }
 
         queryURL = queryURL_withspaces.split(' ').join('+');
-        for (var i = date_offset; i < date_range + date_offset; ++i) {
+        function display_weather(i) {
             // Here we run our AJAX call to the OpenWeatherMap API
             $.ajax({
                 url: queryURL,
@@ -70,6 +70,9 @@ $(document).ready(function() {
                     
                 });
         }
+        for (var i = date_offset; i < date_range + date_offset; ++i)
+            display_weather(i);
+
     });
 });
     
