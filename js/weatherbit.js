@@ -48,11 +48,11 @@ $(document).ready(function() {
             if (is_US_state) {
                 var queryURL = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
                 "city=" + city + "," + state + "," + country + "&start_date=" +  date_arr[i] +
-                "&end_date" + date_arr[i+1] + "&key=" + APIKey;
+                "&end_date=" + date_arr[i+1] + "&key=" + APIKey;
             } else {
                 var queryURL = "https://api.weatherbit.io/v2.0/" + prediction + "/daily?" +
                 "city=" + city + "," + country + "&start_date=" +  date_arr[i] +
-                "&end_date" + date_arr[i+1] + "&key=" + APIKey;  
+                "&end_date=" + date_arr[i+1] + "&key=" + APIKey;  
             }
 
                 // Here we run our AJAX call to the OpenWeatherMap API
@@ -63,7 +63,7 @@ $(document).ready(function() {
                     // We store all of the retrieved data inside of an object called "response"
                     // Documentation available at https://www.weatherbit.io/api/weather-forecast-16-day
                     .then(function(response) {
-                        console.log("Date: " + date_arr[i].format("MM/DD/YYYY"));
+                        console.log("Date: " + response.data.ts);
                         console.log("Temperature (F): " + response.data.temp);
                         console.log("Max Temperature (F): " + response.data.max_temp);
                         console.log("Min Temperature (F): " + response.data.min_temp);
