@@ -9,7 +9,6 @@ function abbrState(input, to){
     var states = [
         ['Arizona', 'AZ'],
         ['Alabama', 'AL'],
-        ['Alaska', 'AK'],
         ['Arizona', 'AZ'],
         ['Arkansas', 'AR'],
         ['California', 'CA'],

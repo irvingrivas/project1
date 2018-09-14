@@ -11,8 +11,8 @@ $(document).ready(function() {
         console.log("Moment Start Date: " + moment($("#calendar-input").daterangepicker().val().split("-")[0].trim(),"MM/DD/YYYY"));
         console.log("Moment End Date: " + moment($("#calendar-input").daterangepicker().val().split("-")[1].trim(),"MM/DD/YYYY"));
 
-        var city = $("#cityId").val();
-        var country = $("#countryId").val();
+        var city = $("#cityId").val().trim();
+        var country = $("#countryId").val().trim();
         var start_date = moment($("#calendar-input").daterangepicker().val().split("-")[0].trim());
         var end_date = moment($("#calendar-input").daterangepicker().val().split("-")[1].trim());
 
@@ -35,8 +35,8 @@ $(document).ready(function() {
         // Check if country is US
         if (country === "United States") {
             var is_US_state = true;
-            var state_fullname = $("#stateId").val();
-            state = abbrState(state_fullname,"abbr")
+            var state_fullname = $("#stateId").val().trim();
+            state = abbrState(state_fullname,"abbr");
         } else {
             var is_US_state = false;
         }
